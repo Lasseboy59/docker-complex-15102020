@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -13,9 +15,9 @@ after_success:
   - docker build -t lasse1900/multi-nginx ./nginx
   - docker build -t lasse1900/multi-server ./server
   - docker build -t lasse1900/multi-worker ./worker
-  # Log into docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword_stdin
-  # Take images and push to Docker Hub
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
   - docker push lasse1900/multi-client
   - docker push lasse1900/multi-nginx
   - docker push lasse1900/multi-server
